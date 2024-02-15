@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+class Main {
+{static} main(args:String[])
+}
+
+class PointOfSale {
+'- idLastSale : int
+- randomIdSaleGenerator : Random
++ makeNewSale() : int
++ addLineItemToSale(idSale : int, \n\tproductName : String,\n\tquantity : int)
++ printBillOfSale(saleId : int)
++ payOneSale(saleId : int, \n\thandedAmount : double) : double
+- fillCatalog()
+- searchSaleById(int id) : Sale
+}
+
+class ProductCatalog {
++ addProductSpecification(name : String, \n\tprice : double)
++ searchByName(name : String) : \n\tProductSpecification
+}
+
+class ProductSpecification {
+- price : double
+- name : String
+}
+
+class Sale {
+- id : int
++ addLineItem(prodSpec : \n\tProductSpecification, \n\tquantity : int)
++ total() : double
++ printBill()
++ pay(amount : double) : double
+}
+
+class PaymentInCash {
+- amount : double
+}
+
+class SaleLineItem {
+- quantity : int
++ subtotal() : double
++ print()
+}
+
+PointOfSale o--> "*" Sale : sales
+Sale *--> "*" SaleLineItem : saleLineItems
+SaleLineItem --> "1" ProductSpecification : productSpecification
+PointOfSale --> "1" ProductCatalog
+ProductCatalog o--> "*" ProductSpecification : prodSpecs
+Sale -> "1" PaymentInCash
+@enduml
