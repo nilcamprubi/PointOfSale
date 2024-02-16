@@ -26,12 +26,16 @@ public class Sale {
         for (SaleLineItem saleLineItem : saleLineItems) {
             saleLineItem.print();
         }
-        System.out.println("Total " + total());
+        System.out.printf("Total %.2f\n", total());
     }
 
-    public double pay(double amount) {
+    public void pay(double amount) {
         assert payment == null : "Can not make two payment for a sale";
         payment = new PaymentInCash(amount);
-        return payment.change(total());
+    }
+
+    public void printChange() {
+        assert payment != null : "No payment for sale " + id ;
+        System.out.printf("Change : %.2f\n", payment.change(total()));
     }
 }

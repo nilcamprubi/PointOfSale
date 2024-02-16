@@ -9,9 +9,7 @@ public class SaleLineItem {
         return quantity * productSpecification.getPrice();
     }
     public void print() {
-        System.out.println(productSpecification.getName()
-                + " " + quantity
-                + " x " + productSpecification.getPrice()
-                + " = " + subtotal());
+        System.out.printf("%s %d x %.2f = %.2f\n", productSpecification.getName(), quantity,
+                productSpecification.getPrice(), subtotal());
     }
 }

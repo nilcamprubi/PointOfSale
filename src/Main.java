@@ -17,5 +17,6 @@ public class Main {
         pointOfSale.printBillOfSale(idSale);
         double handedAmount = 20. ;
         pointOfSale.payOneSale(idSale, handedAmount);
+        pointOfSale.printChangeOfSale(idSale);
     }
 }

@@ -6,6 +6,11 @@ class Main {
 {static} main(args:String[])
 }
 
+package java.util {
+class Random
+class ArrayList
+}
+
 class PointOfSale {
 '- idLastSale : int
 - randomIdSaleGenerator : Random
@@ -13,6 +18,7 @@ class PointOfSale {
 + addLineItemToSale(idSale : int, \n\tproductName : String,\n\tquantity : int)
 + printBillOfSale(saleId : int)
 + payOneSale(saleId : int, \n\thandedAmount : double) : double
++ printChangeOfSale(saleId : int)
 - fillCatalog()
 - searchSaleById(int id) : Sale
 }
@@ -33,10 +39,12 @@ class Sale {
 + total() : double
 + printBill()
 + pay(amount : double) : double
++ printChange()
 }
 
 class PaymentInCash {
 - amount : double
++ change(totalSale : double) : double
 }
 
 class SaleLineItem {
@@ -49,6 +57,6 @@ PointOfSale o--> "*" Sale : sales
 Sale *--> "*" SaleLineItem : saleLineItems
 SaleLineItem --> "1" ProductSpecification : productSpecification
 PointOfSale --> "1" ProductCatalog
-ProductCatalog o--> "*" ProductSpecification : prodSpecs
+ProductCatalog o--> "*" ProductSpecification : productSpecifications
 Sale -> "1" PaymentInCash
 @enduml
