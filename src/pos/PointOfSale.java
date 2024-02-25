@@ -1,11 +1,12 @@
+package pos;
+
 import java.util.ArrayList;
-import java.util.Random;
+
 
 public class PointOfSale {
     private ProductCatalog productCatalog;
     private ArrayList<Sale> sales;
-    //private int idLastSale = 0;
-    Random randomIdSaleGenerator = new Random();
+    private int idLastSale = 0;
 
     public PointOfSale() {
         productCatalog = new ProductCatalog();
@@ -14,18 +15,20 @@ public class PointOfSale {
     }
 
     private void fillCatalog() {
-        productCatalog.addProductSpecification("Cocacola", 1.20);
+        productCatalog.addProductSpecification("Coca-cola", 1.20);
         productCatalog.addProductSpecification("Nestea", 1.50);
         productCatalog.addProductSpecification("Moritz", 1.90);
+        productCatalog.addProductSpecification("Aigua de Ribes", 1.10);
+        productCatalog.addProductSpecification("Olives Espinaler", 1.90);
+        productCatalog.addProductSpecification("Patates Lays", 2.05);
+        productCatalog.addProductSpecification("Trina", 1.35);
     }
 
     public int makeNewSale() {
-        //idLastSale++;
-        //Sale newSale = new Sale(idLastSale);
-        int idNewSale = randomIdSaleGenerator.nextInt(); // 2^32 = 4,294,967,296 possible values
-        Sale newSale = new Sale(idNewSale);
+        idLastSale++;
+        Sale newSale = new Sale(idLastSale);
         sales.add(newSale);
-        return idNewSale;
+        return idLastSale;
     }
 
     public void addLineItemToSale(int idSale, String productName, int quantity) {
@@ -56,6 +59,15 @@ public class PointOfSale {
     public void printChangeOfSale(int saleId) {
         Sale sale = searchSaleById(saleId);
         sale.printChange();
+    }
+
+    public boolean isSalePaid(int id) {
+        return searchSaleById(id).isPaid();
+    }
+
+    // this is for the user interface
+    public ArrayList<String> getProductNames() {
+        return productCatalog.getProductNames();
     }
 }
 

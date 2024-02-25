@@ -1,3 +1,5 @@
+package pos;
+
 public class ProductSpecification {
     private String name;
     private double price; // in Euros

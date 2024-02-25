@@ -1,9 +1,12 @@
+package pos;
+
 import java.util.ArrayList;
 
 public class Sale {
     private int id;
     private ArrayList<SaleLineItem> saleLineItems = new ArrayList<>();
     private PaymentInCash payment;
+    boolean isPaid = false;
 
     public Sale(int id) {
         this.id = id;
@@ -30,12 +33,17 @@ public class Sale {
     }
 
     public void pay(double amount) {
-        assert payment == null : "Can not make two payment for a sale";
+        assert !isPaid : "sale " + id + " has already been payed";
         payment = new PaymentInCash(amount);
+        isPaid = true;
     }
 
     public void printChange() {
         assert payment != null : "No payment for sale " + id ;
-        System.out.printf("Change : %.2f\n", payment.change(total()));
+        System.out.printf("\nAmount paid : %.2f\nChange : %.2f\n", payment.getAmount(), payment.change(total()));
+    }
+
+    public boolean isPaid() {
+        return isPaid;
     }
 }

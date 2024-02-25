@@ -1,3 +1,5 @@
+package pos;
+
 public class PaymentInCash {
     double amount; // Euros
 
@@ -9,5 +11,9 @@ public class PaymentInCash {
         double change = amount - totalSale; // better than sale.total(), avoids a dependence
         assert change >= 0;
         return change;
+    }
+
+    public double getAmount() {
+        return amount;
     }
 }

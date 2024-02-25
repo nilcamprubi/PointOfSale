@@ -1,3 +1,5 @@
+package pos;
+
 public class SaleLineItem {
     ProductSpecification productSpecification;
     int quantity;
