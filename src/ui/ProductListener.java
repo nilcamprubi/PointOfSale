@@ -11,6 +11,7 @@ public class ProductListener implements ActionListener {
     this.productName = productName;
     this.mediator = mediator;
   }
+
   @Override
   public void actionPerformed(ActionEvent actionEvent) {
     mediator.addLineItem(productName, 1);

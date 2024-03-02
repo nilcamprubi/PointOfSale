@@ -6,11 +6,6 @@ class Main {
 {static} main(args:String[])
 }
 
-package java.util {
-class Random
-class ArrayList
-}
-
 class PointOfSale {
 '- idLastSale : int
 - randomIdSaleGenerator : Random
@@ -31,6 +26,7 @@ class ProductCatalog {
 class ProductSpecification {
 - price : double
 - name : String
++ incrementQuantity()
 }
 
 class Sale {

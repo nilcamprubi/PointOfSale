@@ -1,14 +1,15 @@
 package ui;
 
 import pos.PointOfSale;
+
 import javax.swing.*;
 
 public class Mediator {
-  private PointOfSale pointOfSale;
-  private TableListener currentTableListener;
   JButton selectedTable;
   JTextField textAmount; // to set it to 0.0 once a payment is made
   double paidAmount = 0.0;
+  private PointOfSale pointOfSale;
+  private TableListener currentTableListener;
 
   public Mediator(PointOfSale pointOfSale, JTextField textAmount) {
     this.pointOfSale = pointOfSale;

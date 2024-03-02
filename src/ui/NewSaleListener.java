@@ -9,6 +9,7 @@ class NewSaleListener implements ActionListener {
   public NewSaleListener(Mediator mediator) {
     this.mediator = mediator;
   }
+
   @Override
   public void actionPerformed(ActionEvent actionEvent) {
     mediator.makeNewSale();

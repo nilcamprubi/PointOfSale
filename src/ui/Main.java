@@ -47,8 +47,8 @@ public class Main {
     int numColsTables = 2;
     assert numTables <= numRowsTables * numColsTables;
     int nTable = 0;
-    for (int row=0; row < numRowsTables ; row++) {
-      for (int col=0; col < numColsTables ; col++) {
+    for (int row = 0; row < numRowsTables; row++) {
+      for (int col = 0; col < numColsTables; col++) {
         if (nTable < numTables) {
           String idTable = "T" + (row + 1) + (col + 1);
           JButton table = makeButton(row, col, idTable);
@@ -82,7 +82,7 @@ public class Main {
     int numColsProducts = 2;
     assert numProducts <= numRowsProducts * numColsProducts;
     int nProduct = 0;
-    for (int row=0; row < numRowsProducts ; row++) {
+    for (int row = 0; row < numRowsProducts; row++) {
       for (int col = 0; col < numColsProducts; col++) {
         if (nProduct < numProducts) {
           JButton buttonProduct = makeButton(row, col + 3, "");
@@ -103,10 +103,9 @@ public class Main {
 
     textAmount.setText("0.0");
     int[] posAmount = position(1, 5);
-    textAmount.setBounds(posAmount[0], posAmount[1], buttonWidth, buttonHeight/2);
+    textAmount.setBounds(posAmount[0], posAmount[1], buttonWidth, buttonHeight / 2);
     textAmount.addActionListener(new AmountListener(textAmount, mediator));
     frame.add(textAmount);
-
 
     frame.setSize(frameWidth, frameHeight);
     frame.setLayout(null);

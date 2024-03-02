@@ -21,13 +21,13 @@ class TableListener implements ActionListener {
     System.out.println("selected table " + table.getLabel());
   }
 
+  public int getSaleId() {
+    return saleId;
+  }
+
   public void setSaleId(int saleId) {
     this.saleId = saleId;
     hasASale = true;
-  }
-
-  public int getSaleId() {
-    return saleId;
   }
 
   public boolean hasASale() {

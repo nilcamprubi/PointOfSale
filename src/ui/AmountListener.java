@@ -12,6 +12,7 @@ public class AmountListener implements ActionListener {
     this.textField = textField;
     this.mediator = mediator;
   }
+
   @Override
   public void actionPerformed(ActionEvent actionEvent) {
     double amount = Double.parseDouble(textField.getText());
