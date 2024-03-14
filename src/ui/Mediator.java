@@ -43,7 +43,7 @@ public class Mediator {
     if (currentTableListener != null) {
       if (currentTableListener.hasASale()) {
         int id = currentTableListener.getSaleId();
-        pointOfSale.printBillOfSale(id);
+        pointOfSale.printReceiptOfSale(id);
       } else {
         System.out.println("Table " + selectedTable.getLabel() + " has no sale yet");
       }

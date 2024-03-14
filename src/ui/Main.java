@@ -65,10 +65,10 @@ public class Main {
     buttonNewSale.addActionListener(new NewSaleListener(mediator));
     frame.add(buttonNewSale);
 
-    JButton buttonBill = makeButton(1, 2, "Bill");
-    buttonBill.setBackground(Color.YELLOW);
-    buttonBill.addActionListener(new PrintBillListener(mediator));
-    frame.add(buttonBill);
+    JButton buttonReceipt = makeButton(1, 2, "Receipt");
+    buttonReceipt.setBackground(Color.YELLOW);
+    buttonReceipt.addActionListener(new PrintReceiptListener(mediator));
+    frame.add(buttonReceipt);
 
     JButton buttonPay = makeButton(2, 2, "Pay");
     buttonPay.setBackground(Color.ORANGE);

@@ -1,5 +1,7 @@
 package pos;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 
@@ -7,21 +9,11 @@ public class PointOfSale {
   private ProductCatalog productCatalog;
   private ArrayList<Sale> sales;
   private int idLastSale = 0;
+  private final String FILE_NAME = "src/pos/catalog.txt";
 
   public PointOfSale() {
-    productCatalog = new ProductCatalog();
-    fillCatalog();
+    productCatalog = new ProductCatalog(FILE_NAME);
     sales = new ArrayList<>();
-  }
-
-  private void fillCatalog() {
-    productCatalog.addProductSpecification("Coca-cola", 1.20);
-    productCatalog.addProductSpecification("Nestea", 1.50);
-    productCatalog.addProductSpecification("Moritz", 1.90);
-    productCatalog.addProductSpecification("Aigua de Ribes", 1.10);
-    productCatalog.addProductSpecification("Olives Espinaler", 1.90);
-    productCatalog.addProductSpecification("Patates Lays", 2.05);
-    productCatalog.addProductSpecification("Trina", 1.35);
   }
 
   public int makeNewSale() {
@@ -46,9 +38,9 @@ public class PointOfSale {
     return null;
   }
 
-  public void printBillOfSale(int saleId) {
+  public void printReceiptOfSale(int saleId) {
     Sale sale = searchSaleById(saleId);
-    sale.printBill();
+    sale.printReceipt();
   }
 
   public void payOneSale(int saleId, double amount) {

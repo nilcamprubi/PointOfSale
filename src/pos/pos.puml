@@ -7,20 +7,28 @@ class Main {
 }
 
 class PointOfSale {
-'- idLastSale : int
-- randomIdSaleGenerator : Random
+- idLastSale : int
+- catalogFileName : String
 + makeNewSale() : int
-+ addLineItemToSale(idSale : int, \n\tproductName : String,\n\tquantity : int)
-+ printBillOfSale(saleId : int)
-+ payOneSale(saleId : int, \n\thandedAmount : double) : double
++ addLineItemToSale(idSale : int, \n\tprodName : String, qty : int)
++ printReceiptOfSale(saleId : int)
++ payOneSale(saleId : int, amount : double)
 + printChangeOfSale(saleId : int)
-- fillCatalog()
 - searchSaleById(int id) : Sale
 }
 
 class ProductCatalog {
-+ addProductSpecification(name : String, \n\tprice : double)
-+ searchByName(name : String) : \n\tProductSpecification
++ ProductCatalog(fileName : String)
++ searchByName(name : String) : ProductSpecification
+- addProductSpecification(name : String, price : double)
+}
+
+note left of ProductCatalog::ProductCatalog {
+text file with
+Coca-cola 1.20
+Nestea    1.50
+Moritz    1.90
+...
 }
 
 class ProductSpecification {
@@ -31,20 +39,24 @@ class ProductSpecification {
 
 class Sale {
 - id : int
-+ addLineItem(prodSpec : \n\tProductSpecification, \n\tquantity : int)
+- dateTime : LocalDateTime
++ Sale(id : int)
++ addLineItem(prodSpec : ProductSpecification, \n\tqty : int)
 + total() : double
-+ printBill()
++ printReceipt()
 + pay(amount : double) : double
 + printChange()
 }
 
 class PaymentInCash {
 - amount : double
++ PaymentInCash(amount : double)
 + change(totalSale : double) : double
 }
 
 class SaleLineItem {
 - quantity : int
++ incrementQuantity()
 + subtotal() : double
 + print()
 }
@@ -52,7 +64,7 @@ class SaleLineItem {
 PointOfSale o--> "*" Sale : sales
 Sale *--> "*" SaleLineItem : saleLineItems
 SaleLineItem --> "1" ProductSpecification : productSpecification
-PointOfSale --> "1" ProductCatalog
-ProductCatalog o--> "*" ProductSpecification : productSpecifications
-Sale -> "1" PaymentInCash
+PointOfSale --> "1" ProductCatalog : productCatalog
+ProductCatalog o--> " * " ProductSpecification : productSpecifications
+Sale ---> "1" PaymentInCash
 @enduml

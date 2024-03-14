@@ -3,10 +3,10 @@ package ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PrintBillListener implements ActionListener {
+public class PrintReceiptListener implements ActionListener {
   private Mediator mediator;
 
-  public PrintBillListener(Mediator mediator) {
+  public PrintReceiptListener(Mediator mediator) {
     this.mediator = mediator;
   }
 

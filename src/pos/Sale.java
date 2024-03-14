@@ -1,11 +1,15 @@
 package pos;
 
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Sale {
   boolean isPaid = false;
   private int id;
   private ArrayList<SaleLineItem> saleLineItems = new ArrayList<>();
+  private LocalDateTime dateTime = LocalDateTime.now();
   private PaymentInCash payment;
 
   public Sale(int id) {
@@ -34,8 +38,9 @@ public class Sale {
     return total;
   }
 
-  public void printBill() {
+  public void printReceipt() {
     System.out.println("Sale " + id);
+    System.out.println(DateTimeFormatter.ofPattern("dd-MM-yyy hh:mm").format(dateTime));
     for (SaleLineItem saleLineItem : saleLineItems) {
       saleLineItem.print();
     }
