@@ -23,14 +23,14 @@ public class Sale {
   public void addLineItem(ProductSpecification productSpecification, int quantity) {
     for (SaleLineItem item : saleLineItems) {
       if (item.productSpecification == productSpecification) { // same object
-        item.incrementQuantity();
+        item.incrementQuantity(quantity);
         return;
       }
     }
     saleLineItems.add(new SaleLineItem(productSpecification, quantity));
   }
 
-  public double total() {
+  private double total() {
     double total = 0.;
     for (SaleLineItem saleLineItem : saleLineItems) {
       total += saleLineItem.subtotal();
@@ -45,6 +45,21 @@ public class Sale {
       saleLineItem.print();
     }
     System.out.printf("Total %.2f\n", total());
+  }
+
+  public void badPrintReceipt() {
+    System.out.println("Sale " + id);
+    System.out.println(DateTimeFormatter.ofPattern("dd-MM-yyy hh:mm").format(dateTime));
+    double total = 0.;
+    for (SaleLineItem saleLineItem : saleLineItems) {
+      String prodName = saleLineItem.productSpecification.getName();
+      int quantity = saleLineItem.quantity; //getQuantity();
+      double price = saleLineItem.productSpecification.getPrice();
+      double subtotal = quantity * price;
+      System.out.printf("%s %d x %.2f = %.2f\n", prodName, quantity, price, subtotal);
+      total += subtotal;
+    }
+    System.out.printf("Total %.2f\n", total);
   }
 
   public void pay(double amount) {

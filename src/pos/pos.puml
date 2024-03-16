@@ -34,7 +34,7 @@ Moritz    1.90
 class ProductSpecification {
 - price : double
 - name : String
-+ incrementQuantity()
++ incrementQuantity(qty : int)
 }
 
 class Sale {
@@ -42,10 +42,10 @@ class Sale {
 - dateTime : LocalDateTime
 + Sale(id : int)
 + addLineItem(prodSpec : ProductSpecification, \n\tqty : int)
-+ total() : double
 + printReceipt()
 + pay(amount : double) : double
 + printChange()
+- total() : double
 }
 
 class PaymentInCash {

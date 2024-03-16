@@ -9,8 +9,8 @@ public class SaleLineItem {
     this.quantity = quantity;
   }
 
-  public void incrementQuantity() {
-    quantity++;
+  public void incrementQuantity(int qty) {
+    quantity += qty;
   }
 
   public double subtotal() {
