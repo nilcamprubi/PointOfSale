@@ -1,4 +1,4 @@
-package pos;
+package pos_creditcard;
 
 
 import java.time.LocalDateTime;
@@ -10,7 +10,7 @@ public class Sale {
   private int id;
   private ArrayList<SaleLineItem> saleLineItems = new ArrayList<>();
   private LocalDateTime dateTime = LocalDateTime.now();
-  private PaymentInCash payment;
+  private Payment payment;  // note : supertype
 
   public Sale(int id) {
     this.id = id;
@@ -62,18 +62,28 @@ public class Sale {
     System.out.printf("Total %.2f\n", total);
   }
 
-  public void pay(double amount) {
+  public void payCash(double amountHanded) {
     assert !isPaid : "sale " + id + " has already been paid";
-    payment = new PaymentInCash(amount);
+    payment = new PaymentInCash(amountHanded, total());
     isPaid = true;
   }
 
-  public void printChange() {
+  public void payCreditCard(String ccnumber) {
+    assert !isPaid : "sale " + id + " has already been paid";
+    payment = new PaymentCreditCard(ccnumber, total());
+    if ( ((PaymentCreditCard) payment).isAuthorized() ) {
+      // note cast, necessary to call isAuthorized()
+      isPaid = true;
+    }
+  }
+
+  public void printPayment() {
     assert payment != null : "No payment for sale " + id;
-    System.out.printf("\nAmount paid : %.2f\nChange : %.2f\n", payment.getAmount(), payment.change(total()));
+    payment.print();
   }
 
   public boolean isPaid() {
     return isPaid;
   }
+
 }
