@@ -8,11 +8,11 @@ public class PaymentCreditCard extends Payment {
   public PaymentCreditCard(String ccnumber, double amountToPay) {
     super(amountToPay);
     this.ccnumber = ccnumber;
-    authorize();
+    authorized = authorize();
   }
 
-  private void authorize() {
-    authorized = (amountToPay <= CC_LIMIT);
+  private boolean authorize() {
+    return (amountToPay <= CC_LIMIT);
   }
 
   public boolean isAuthorized() {
