@@ -8,7 +8,7 @@ public class Mediator {
   JButton selectedTable;
   JTextField textAmount; // to set it to 0.0 once a payment is made
   double paidAmount = 0.0;
-  private PointOfSale pointOfSale;
+  private final PointOfSale pointOfSale;
   private TableListener currentTableListener;
 
   public Mediator(PointOfSale pointOfSale, JTextField textAmount) {
@@ -30,7 +30,7 @@ public class Mediator {
           int saleId = pointOfSale.makeNewSale();
           currentTableListener.setSaleId(saleId);
         } else {
-          System.out.println("Current sale of table " + selectedTable.getLabel() + " has not been paid yet");
+          System.out.println("Current sale of table " + selectedTable.getText() + " has not been paid yet");
         }
       } else {
         int saleId = pointOfSale.makeNewSale();
@@ -45,7 +45,7 @@ public class Mediator {
         int id = currentTableListener.getSaleId();
         pointOfSale.printReceiptOfSale(id);
       } else {
-        System.out.println("Table " + selectedTable.getLabel() + " has no sale yet");
+        System.out.println("Table " + selectedTable.getText() + " has no sale yet");
       }
     }
   }
@@ -60,7 +60,7 @@ public class Mediator {
           paidAmount = 0;
           textAmount.setText("0.0");
         } else {
-          System.out.println("Sale of table " + selectedTable.getLabel() + " has already been paid");
+          System.out.println("Sale of table " + selectedTable.getText() + " has already been paid");
         }
       }
     }
@@ -77,7 +77,7 @@ public class Mediator {
         int idSale = currentTableListener.getSaleId();
         pointOfSale.addLineItemToSale(idSale, productName, quantity);
       } else {
-        System.out.println("Table " + selectedTable.getLabel() + " has no sale yet");
+        System.out.println("Table " + selectedTable.getText() + " has no sale yet");
       }
     }
   }

@@ -10,19 +10,19 @@ import java.util.ArrayList;
 
 
 public class Main {
-  private static final int buttonWidth = 100;
-  private static final int buttonHeight = 100;
-  private static final int x0 = 40;
-  private static final int y0 = 60;
-  private static final int verticalSeparation = 30;
-  private static final int horizontalSeparation = 60;
-  private static final int frameWidth = 1000;
-  private static final int frameHeight = 600;
+  private static final int BUTTON_WIDTH = 100;
+  private static final int BUTTON_HEIGHT = 100;
+  private static final int X0 = 40;
+  private static final int Y0 = 60;
+  private static final int VERTICAL_SEPARATION = 30;
+  private static final int HORIZONTAL_SEPARATION = 60;
+  private static final int FRAME_WIDTH = 1000;
+  private static final int FRAME_HEIGHT = 600;
 
   private static int[] position(int row, int col) {
     int[] pos = new int[2];
-    pos[0] = x0 + col * (buttonWidth + horizontalSeparation); // horizontal axis
-    pos[1] = y0 + row * (verticalSeparation + buttonHeight); // vertical axis
+    pos[0] = X0 + col * (BUTTON_WIDTH + HORIZONTAL_SEPARATION); // horizontal axis
+    pos[1] = Y0 + row * (VERTICAL_SEPARATION + BUTTON_HEIGHT); // vertical axis
     return pos;
   }
 
@@ -30,7 +30,7 @@ public class Main {
     JButton button = new JButton(label);
     // better a Swing button because AWT buttons can't display images
     int[] pos = position(row, col);
-    button.setBounds(pos[0], pos[1], buttonWidth, buttonHeight);
+    button.setBounds(pos[0], pos[1], BUTTON_WIDTH, BUTTON_HEIGHT);
     return button;
   }
 
@@ -77,6 +77,8 @@ public class Main {
 
     // products
     ArrayList<String> productNames = pointOfSale.getProductNames();
+    // from the product names get the names of the images/icons to show in directory images/ and make the
+    // corresponding buttonss
     int numProducts = productNames.size();
     int numRowsProducts = 5;
     int numColsProducts = 2;
@@ -98,16 +100,16 @@ public class Main {
     // enter the amount paid for the current sale of the selected table, then click on the Pay button
     JLabel labelAmount = new JLabel("Amount paid");
     int[] posLabel = position(0, 5);
-    labelAmount.setBounds(posLabel[0], posLabel[1], buttonWidth, buttonHeight);
+    labelAmount.setBounds(posLabel[0], posLabel[1], BUTTON_WIDTH, BUTTON_HEIGHT);
     frame.add(labelAmount);
 
     textAmount.setText("0.0");
     int[] posAmount = position(1, 5);
-    textAmount.setBounds(posAmount[0], posAmount[1], buttonWidth, buttonHeight / 2);
+    textAmount.setBounds(posAmount[0], posAmount[1], BUTTON_WIDTH, BUTTON_HEIGHT / 2);
     textAmount.addActionListener(new AmountListener(textAmount, mediator));
     frame.add(textAmount);
 
-    frame.setSize(frameWidth, frameHeight);
+    frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
     frame.setLayout(null);
     frame.setVisible(true);
 
