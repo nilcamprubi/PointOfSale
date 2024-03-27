@@ -39,7 +39,7 @@ public class Mediator {
     }
   }
 
-  public void printBill() {
+  public void printReceipt() {
     if (currentTableListener != null) {
       if (currentTableListener.hasASale()) {
         int id = currentTableListener.getSaleId();

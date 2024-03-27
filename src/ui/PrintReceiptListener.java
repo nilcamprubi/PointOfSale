@@ -12,6 +12,6 @@ public class PrintReceiptListener implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent actionEvent) {
-    mediator.printBill();
+    mediator.printReceipt();
   }
 }

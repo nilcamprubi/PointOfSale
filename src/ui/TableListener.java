@@ -17,7 +17,7 @@ class TableListener implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent actionEvent) {
-    mediator.setSelectedTable(table);
+    mediator.setSelectedTable(table); // to get table name (label, text)
     System.out.println("selected table " + table.getLabel());
   }
 
