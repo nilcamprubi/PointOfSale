@@ -17,14 +17,19 @@ public class Main {
     //Coca-cola 3 x 1.2 = 3.6
     //Total 11.2
     pointOfSale.printReceiptOfSale(idSale);
+    /*
     double handedAmount = 20.;
     pointOfSale.payOneSaleCash(idSale, handedAmount);
-
+     */
+    Cash moneyHanded = new Cash(new double[] {10.}, new int[]{2});
+    pointOfSale.payOneSaleCash(idSale, moneyHanded);
+    /*
     int idSale2 = pointOfSale.makeNewSale();
     pointOfSale.addLineItemToSale(idSale2, "Nestea", 1);
     pointOfSale.printReceiptOfSale(idSale2);
     pointOfSale.payOneSaleCreditCard(idSale2, "4502360043567891");
     pointOfSale.printPayment(idSale2);
+     */
   }
   // the old main
   /*
