@@ -12,7 +12,7 @@ class PointOfSale {
 + makeNewSale() : int
 + addLineItemToSale(idSale : int, \n\tprodName : String, qty : int)
 + printReceiptOfSale(saleId : int)
-+ payOneSaleCash(saleId : int, amountHanded : double)
++ payOneSaleCash(saleId : int, moneyHanded : CashBox)
 + payOneSaleCash(saleId : int, ccnumber : String)
 + printPayment(saleId : int)
 - searchSaleById(int id) : Sale
@@ -42,7 +42,7 @@ class Sale {
 - dateTime : LocalDateTime
 + Sale(id : int)
 + addLineItem(prodSpec : ProductSpecification, qty : int)
-+ payCash(amountHanded : double)
++ payCash(cashBox : CashBox, moneyHanded : CashBox, variantChangeMaker : String)
 + payCreditCard(amountToPay : double, ccnumber : String)
 + printPayment()
 + total() : double
@@ -65,8 +65,8 @@ abstract class Payment {
 }
 
 class PaymentInCash extends Payment {
-  - amount : double
-  + PaymentInCash(amountToPay : double)
+  - amountHanded : double
+  + PaymentInCash(cashBox : CashBox, moneyHanded : CashBox, amountToPay : double, variantChangeMaker : double)
   + print()
   - change(totalSale : double) : double
 }
@@ -82,10 +82,41 @@ class PaymentCreditCard extends Payment {
   - authorize() : boolean
 }
 
+interface Change {
+    - value : CashBox;
+    + getValue() : CashBox;
+}
+
+class ChangeGreedy implements Change {
+    - value : CashBox;
+    + ChangeGreedy(amount : double, cashBox : CashBox);
+    + getValue() : CashBox;
+}
+
+class ChangeRandom implements Change {
+    - value : CashBox;
+    + ChangeRandom(amount : double, cashBox : CashBox);
+    + getValue() : CashBox;
+}
+
+class CashBox {
+    - cash : HashMap<Double,Integer>
+    - denominations : double[]
+    + CashBox(option : int)
+    + CashBox(denomination : double, quantity : int)
+    + getDenomination(position : int) : double
+    + getCash() : HashMap<Double,Integer>
+    + merge(money : CashBox)
+    + getTotalAmount() : double
+    + print()
+}
+
 PointOfSale o--> "*" Sale : sales
 Sale *--> "*" SaleLineItem : saleLineItems
 SaleLineItem --> "1" ProductSpecification : productSpecification
 PointOfSale --> "1" ProductCatalog : productCatalog
 ProductCatalog o--> " * " ProductSpecification : productSpecifications
+PaymentInCash x--> Change : change
+PointOfSale o--> "1" CashBox
 
 @enduml

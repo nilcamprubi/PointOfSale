@@ -8,6 +8,8 @@ public class PointOfSale {
   private ArrayList<Sale> sales;
   private int idLastSale = 0;
   private final String FILE_NAME = "src/pos/catalog.txt";
+  private Cash cash = new Cash(1); // Pass 1 to initialize with default values, pass anything else to
+                                                    // initialize it empty.
 
   public PointOfSale() {
     productCatalog = new ProductCatalog(FILE_NAME);
@@ -41,10 +43,26 @@ public class PointOfSale {
     sale.printReceipt();
   }
 
-  public void payOneSaleCash(int saleId, double amountHanded) {
+  public void payOneSaleCash(int saleId, Cash moneyHanded) {
     Sale sale = searchSaleById(saleId);
-    sale.payCash(amountHanded);
+    String variantChangeMaker = "random"; // greedy or random
+    Cash change = sale.payCash(cash, moneyHanded, variantChangeMaker);
+
+    //if (canMakeChange(change.getTotalAmount(), moneyHanded.getTotalAmount())) {
+      System.out.println("\nAfter payment and giving change the cash box has:");
+      Cash.print();
   }
+
+  /*
+  public boolean canMakeChange(double change, double moneyHanded) {
+    if(change <= Cash.getTotalAmount()+moneyHanded) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  */
 
   public void payOneSaleCreditCard(int saleId, String ccnumber) {
     Sale sale = searchSaleById(saleId);

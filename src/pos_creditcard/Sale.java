@@ -48,7 +48,7 @@ public class Sale {
   }
 
   public void badPrintReceipt() {
-    System.out.println("Sale " + id);
+    System.out.println("\nSale " + id);
     System.out.println(DateTimeFormatter.ofPattern("dd-MM-yyy hh:mm").format(dateTime));
     double total = 0.;
     for (SaleLineItem saleLineItem : saleLineItems) {
@@ -62,10 +62,13 @@ public class Sale {
     System.out.printf("Total %.2f\n", total);
   }
 
-  public void payCash(double amountHanded) {
+  public Cash payCash(Cash cashBox, Cash moneyHanded, String variantChangeMaker) {
     assert !isPaid : "sale " + id + " has already been paid";
-    payment = new PaymentInCash(amountHanded, total());
+    assert cashBox.getTotalAmount()+moneyHanded.getTotalAmount() >= moneyHanded.getTotalAmount()-total() : "\nNot enough money to give change.";
+    payment = new PaymentInCash(cashBox, moneyHanded, total(), variantChangeMaker);
     isPaid = true;
+
+    return payment.getChange();
   }
 
   public void payCreditCard(String ccnumber) {

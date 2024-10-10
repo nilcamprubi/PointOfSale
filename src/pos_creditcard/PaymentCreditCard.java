@@ -29,4 +29,9 @@ public class PaymentCreditCard extends Payment {
           "exceeded limit of %.2f\n", amountToPay, CC_LIMIT);
     }
   }
+
+  @Override
+  public CashBox getChange() {
+    return null;
+  }
 }

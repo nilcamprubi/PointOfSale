@@ -8,6 +8,8 @@ public abstract class Payment {
   }
 
   public abstract void print();
+
+  public abstract Cash getChange();
   //TODO: better override toString() and then write
   //   System.out.println(aPayment)
   // in place of
