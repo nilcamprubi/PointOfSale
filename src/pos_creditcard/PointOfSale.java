@@ -8,12 +8,13 @@ public class PointOfSale {
   private ArrayList<Sale> sales;
   private int idLastSale = 0;
   private final String FILE_NAME = "src/pos/catalog.txt";
-  private Cash cash = new Cash(1); // Pass 1 to initialize with default values, pass anything else to
+  private Cash cash; // Pass 1 to initialize with default values, pass anything else to
                                                     // initialize it empty.
 
   public PointOfSale() {
     productCatalog = new ProductCatalog(FILE_NAME);
     sales = new ArrayList<>();
+    cash = new Cash(1);
   }
 
   public int makeNewSale() {
@@ -50,7 +51,7 @@ public class PointOfSale {
 
     //if (canMakeChange(change.getTotalAmount(), moneyHanded.getTotalAmount())) {
       System.out.println("\nAfter payment and giving change the cash box has:");
-      Cash.print();
+      cash.print();
   }
 
   /*

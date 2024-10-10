@@ -1,9 +1,9 @@
 package pos_creditcard;
 
 public class ChangeGreedy implements Change{
-  CashBox value = new CashBox(0);
+  Cash value = new Cash(0);
 
-  public ChangeGreedy(double amount, CashBox cashBox) {
+  public ChangeGreedy(double amount, Cash cashBox) {
     System.out.println("Make change with greedy change maker.");
     int greedyPosition = 10;
 
@@ -20,7 +20,7 @@ public class ChangeGreedy implements Change{
     }
   }
 
-  public CashBox getValue() {
+  public Cash getValue() {
     return value;
   }
 }

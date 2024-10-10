@@ -3,9 +3,9 @@ package pos_creditcard;
 import java.util.Random;
 
 public class ChangeRandom implements Change{
-  CashBox value = new CashBox(0);
+  Cash value = new Cash(0);
 
-  public ChangeRandom(double amount, CashBox cashBox) {
+  public ChangeRandom(double amount, Cash cashBox) {
     System.out.println("Make change with random change maker.");
     Random rand = new Random();
 
@@ -20,7 +20,7 @@ public class ChangeRandom implements Change{
     }
   }
 
-  public CashBox getValue() {
+  public Cash getValue() {
     return value;
   }
 }

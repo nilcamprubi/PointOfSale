@@ -31,7 +31,7 @@ public class PaymentCreditCard extends Payment {
   }
 
   @Override
-  public CashBox getChange() {
+  public Cash getChange() {
     return null;
   }
 }

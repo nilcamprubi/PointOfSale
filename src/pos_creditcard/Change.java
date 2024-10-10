@@ -1,7 +1,7 @@
 package pos_creditcard;
 
 public interface Change {
-   Cash value = null;
+  Cash value = null;
 
-   Cash getValue();
+  Cash getValue();
 }

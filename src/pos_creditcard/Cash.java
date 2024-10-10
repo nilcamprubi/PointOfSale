@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class Cash {
         static HashMap<Double, Integer> cash;
-        private static final double[] denominations = {0.01, 0.02, 0.05, 0.10, 0.20, 0.50, 1.0, 2.0, 5.0, 10.0, 20.0};
+        private final double[] denominations = {0.01, 0.02, 0.05, 0.10, 0.20, 0.50, 1.0, 2.0, 5.0, 10.0, 20.0};
 
         public Cash(int option) {
               cash = new HashMap<>();
@@ -65,8 +65,8 @@ public class Cash {
               return amount;
         }
 
-        public static void print() {
-              for (double denomination : denominations) {
+        public void print() {
+              for (double denomination : cash.keySet()) {
                     int quantity = cash.get(denomination);
                     System.out.printf("%d of %.2f\n", quantity, denomination);
               }
